@@ -1,0 +1,76 @@
+Property
+#include "Property.h"
+
+Property::Property(int worth)
+{
+	this->worth = worth;
+}
+
+
+
+
+
+
+#include <iostream>
+#include "Apartment.h"
+#include "Car.h"
+#include "CountryHouse.h"
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+
+	Property* properties[7];
+	properties[0] = new Apartment(500000);
+	properties[1] = new Apartment(900000);
+	properties[2] = new Apartment(1500000);
+	properties[3] = new Car(200000);
+	properties[4] = new Car(700000);
+	properties[5] = new CountryHouse(2000000);
+	properties[6] = new CountryHouse(1700000);
+
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "Стоимость: " << properties[i]->get_worth() << ", Налог: " << properties[i]->tax() << endl;
+	}
+
+	for (int i = 0; i < 7; i++)
+	{
+		delete properties[i];
+	}
+}
+
+
+
+
+
+#include "CountryHouse.h"
+
+double CountryHouse::tax()
+{
+    return get_worth() / 500.0;
+}
+
+
+
+
+
+
+#include "Car.h"
+
+double Car::tax()
+{
+    return get_worth() / 200.0;
+}
+
+
+
+
+
+#include "Apartment.h"
+
+double Apartment::tax()
+{
+    return get_worth() / 1000.0;
+}
